@@ -1,0 +1,85 @@
+\appendix
+
+\chapter{Matlab Code for network kernels}
+\label{chapter:Appendix1}
+
+\subsection{The Client ttkernel}
+
+\begin{lstlisting}[language=Matlab, caption={client\textunderscore init.m}, label={listing:client_init}]
+function client_init
+
+% Distributed control system: server node
+%
+% Actuates controls sent from controller.
+
+% Initialize TrueTime kernel
+ttInitKernel('prioFP');   
+
+% Client task
+starttime = 0.0;
+period = 0.010;
+ttCreateTask('client_task', period, period, 'client_code');
+ttAttachNetworkHandler('client_task')
+
+\end{lstlisting}
+
+
+\begin{lstlisting}[language=Matlab, caption={client\textunderscore code.m}, label={listing:client_code}]
+function [exectime, data] = client_code(seg, data)
+
+persistent y_3
+
+switch seg
+    case 1
+        y_3 = ttGetMsg;         % Obtain sensor value, y is output, u is input
+        if isempty(y_3)
+            disp('Error in client: no message with actual measurement received!');
+            y_3 = 0.0;
+        else
+            disp('Client success');
+        end
+        exectime = 0.0005;
+    case 2
+        ttAnalogOut(1, y_3);
+        exectime = 0.0005;
+    case 3
+        exectime = -1; % finished
+end
+\end{lstlisting}
+
+\subsection{The interference ttkernel}
+
+\begin{lstlisting}[language=Matlab, caption={interference\textunderscore init.m}, label={listing:interference_init}]
+function interference_init(arg)
+
+% Distributed control system: interference node
+%
+% Generates disturbing network traffic with bandwidth arg (given in block mask)
+
+% Initialize TrueTime kernel
+ttInitKernel('prioFP');  % fixed priority scheduling
+
+% Interference task
+period = 0.01; 
+offset = 0.0005;
+data = arg;
+ttCreatePeriodicTask('interference_task', offset, period, 'interference_code', data);
+
+\end{lstlisting}
+
+\begin{lstlisting}[language=Matlab, caption={interference\textunderscore code.m}, label={listing:interference_code}]
+function [exectime, data] = interference_code(seg, data)
+
+BWshare = data;
+ran = ttAnalogIn(1);
+if ran < BWshare
+  ttSendMsg(3, 1, 256);   % send 80 bits to myself
+end
+
+while ~isempty(ttGetMsg) % read old received messages (if any)
+end
+
+exectime = -1;
+
+\end{lstlisting}
+

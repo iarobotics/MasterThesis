@@ -1,0 +1,285 @@
+\documentclass[a4paper, 11pt, twoside]{report}
+\usepackage{graphicx}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{subfigure}
+\usepackage[caption=false]{subfig}
+\graphicspath{ {Figures/} }
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{titlesec}
+\usepackage{comment}
+\usepackage[utf8]{inputenc} 
+%for æ,ø and å.
+\usepackage{hyperref}
+\usepackage{amssymb,amsmath}
+\usepackage{tcolorbox}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+%\usepackage[usenames, dvipsnames]{color}
+\definecolor{diagramblue}{RGB}{113, 123, 162}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{pgfplots}
+%\usepackage{amsmath}
+\usepackage{fancyvrb}
+\usepackage{multicol}
+\usepackage{afterpage}
+%for angle degrees symbols
+%\usepackage{newunicodechar}
+\usepackage{subfiles}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{framed}
+\usepackage[english]{babel}
+\usepackage[square, numbers]{natbib}
+\usepackage[nottoc]{tocbibind}
+\bibliographystyle{unsrtnat}
+\usepackage[paper=a4paper,layout=a4paper]{geometry}
+\usepackage{booktabs}
+\raggedbottom
+\usepackage{fancyhdr}
+\usepackage{indentfirst}
+\usepackage{dirtytalk}
+\usepackage{hyperref}
+\usepackage{tabu}
+\usepackage{multirow}
+\usepackage{longtable}
+
+\usepackage[usenames,dvipsnames]{pstricks}
+\usepackage{epsfig}
+\usepackage{pst-grad} % For gradients
+\usepackage{pst-plot} % For axes
+\usepackage[space]{grffile} % For spaces in paths
+\usepackage{etoolbox} % For spaces in paths
+\makeatletter % For spaces in paths
+\patchcmd\Gread@eps{\@inputcheck#1 }{\@inputcheck"#1"\relax}{}{}
+\makeatother
+
+%Listing specific
+\usepackage[T1]{fontenc}
+\usepackage{inconsolata}
+
+\usepackage{color}
+\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
+\definecolor{greencomments}{rgb}{0,0.5,0}
+\definecolor{redstrings}{rgb}{0.9,0,0}
+\definecolor{light-gray}{gray}{0.95}
+
+\usepackage{minted}
+\usepackage{mdframed} % Nice frames 
+\usepackage{listings}
+\usepackage[T1]{fontenc}
+\usepackage{bigfoot} % to allow verbatim in footnote
+\usepackage[numbered,framed]{matlab-prettifier}
+\usepackage{filecontents}
+%\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+\newenvironment{code}{\captionsetup{type=listing}}{}
+
+\lstdefinestyle{numbers}
+{numbers=left, stepnumber=1, numberstyle=\tiny, numbersep=10pt}
+\lstdefinestyle{nonumbers}
+{numbers=none}
+
+\lstset{language=[Sharp]C,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  escapeinside={(*@}{@*)},
+  commentstyle=\color{greencomments},
+  keywordstyle=\color{bluekeywords},
+  stringstyle=\color{redstrings},
+  basicstyle=\ttfamily,
+}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+\usepackage{datatool}
+\usepackage{lipsum}
+\usepackage{mwe}
+\usepackage{multirow}
+\usepackage{footnote}
+
+% End Listing specific
+
+%\setcounter{chapter}{-1}
+
+\DeclareMathOperator{\atan2}{atan2}
+\DeclareMathOperator{\atansimple}{atan}
+  
+\setlength{\columnsep}{1cm}
+\setlength{\headheight}{13.6pt}
+
+\definecolor{navyblue}{RGB}{22, 22, 110}
+\definecolor{bloo}{RGB}{15, 30, 127}
+\definecolor{Groon}{RGB}{72,188,60}
+\definecolor{pink}{rgb}{0.858, 0.188, 0.478}
+
+\newcommand\blankpage{%declares a command for making the page after the current a blank page
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+    
+\pgfplotsset{compat=1.13} 
+\begin{document}
+
+\afterpage{\blankpage}
+
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}#1@{}}#2\end{tabular}}
+
+
+\titleformat{\chapter}{\normalfont\huge\bfseries}{\thechapter}{1em}{}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+    \title{{\huge Position Control for a Swarm of Nano-Drones in a Network Distributed System}\\
+	{\large Control and Automation P1 Project}\\
+	\includegraphics[scale=0.5]{AalborgUniversity.png} \\ Network Controlled Systems}
+	\author{Amalia L. Cretu, Ion Sircu \\ 
+	\date{January, 2019}}
+\maketitle
+
+
+\titleformat{\chapter}{\normalfont\huge\bfseries}{\thechapter}{1em}{}
+
+
+%The formatting for the title 'paragraph'
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\begin{multicols*}{2}
+	\includegraphics[scale=0.35]{AalborgUniversity.png}    \vspace{0.3cm}
+	\\\textbf{Title:}\\Position Control for a Swarm of Nano-Drones in a Network Distributed System
+	\vspace{0.5cm}
+	\\\textbf{Theme:}\\Network Controlled Systems \vspace{0.5cm}
+	\\\textbf{Project Period:}\\CA7 P1, January 2019 \\Date:  01.09.2018 - 31.01.2019 \vspace{0.5cm}
+	\\\textbf{Group number:}\\730 \vspace{0.5cm}
+	\\\textbf{Participants:}
+	\\Amalia L. Cretu \\Ion Sircu \\
+	\\\textbf{Supervisors:} \\Henrik Schiøler\\Chris U. Jeppesen  \vspace{0.5cm}
+	\\\textbf{Total Pages:} 107 \vspace{0.3cm}
+	\\\vspace{1.8cm}
+	\\\color{navyblue}{\textbf{The Technical Scientific Faculty \\School of Information and Communication Technologies (SICT) \\}\color{bloo}{Fredrik Bajers Vej 7B \\9220 Aalborg East \\}}
+	\vspace{0.7cm}
+	\\\color{black}\textbf{Synopsis:}
+	\begin{framed}
+    \subfile{Abstract}
+	\end{framed}
+	\pagenumbering{gobble}
+	\end{multicols*}
+	
+\noindent \textbf{Names and Signatures:} \vspace{0.5cm} 
+\maketitle
+\newcommand{\namesigdate}[2][5cm]{%
+  \begin{tabular}{@{}p{#1}@{}}
+    #2 \\[1.5\normalbaselineskip] \hrule \\[10pt]
+  \end{tabular}
+}
+
+\noindent \namesigdate{Amalia L. Cretu} \hfill \namesigdate{Ion Sircu}
+\pagenumbering{gobble}
+
+
+
+
+\maketitle
+\newpage
+\titlespacing*{\chapter}{0pt}{-50pt}{40pt}
+\chapter*{Preface}
+\subfile{Introduction/Preface}
+%\setcounter{tocdepth}{1}
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{2}
+\pagenumbering{gobble}
+\tableofcontents
+\pagenumbering{gobble}
+
+\fancypagestyle{}{%
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0.1pt}
+  \renewcommand{\footrulewidth}{0.1pt}
+  \fancyhead[L]{CA7 - Group 730}
+  \fancyfoot[C]{\thepage}
+  \fancyhead[R]{P1}
+  }
+\pagestyle{}
+
+
+%\chapter*{Glossary}
+%\subfile{Introduction/Glossary}
+%\pagenumbering{gobble}
+
+
+% ----- INTRODUCTION -----
+\chapter{Introduction}
+\pagenumbering{arabic}
+\subfile{Introduction/Introduction}
+\newpage
+
+% ----- SYSTEM DESIGN ------
+\chapter{Components and System Design}
+\subfile{System_Design/ws1}
+\subfile{System_Design/ws2}
+\subfile{System_Design/ws3}
+\subfile{System_Design/ws4}
+\subfile{System_Design/ws5}
+\subfile{System_Design/ws6}
+\subfile{System_Design/Components}
+\subfile{System_Design/System_Design}
+
+\newpage
+
+% ----- Requirements Specifications ---------
+%\chapter{Requirements Specifications}
+%\subfile{Requirements/Requirements}
+
+\newpage
+
+%---------Modelling--------------
+\chapter{Nano-Quadrotor System Modelling}
+\label{chapter:modelling}
+\subfile{Modelling/Modelling}
+
+%---------Network--------------
+\chapter{Distributed System Network Analysis}
+\label{chapter:network}
+\subfile{Network/Network}
+
+% ------- CONCLUSION --------
+\chapter{Conclusions}
+\subfile{Conclusion/Conclusion}
+
+\bibliography{P1_bib.bib}
+\input{Appendix}
+%\listoftables
+%\listoffigures
+
+\end{document}
