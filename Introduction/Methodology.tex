@@ -1,0 +1,59 @@
+
+\label{section:methodology}
+
+
+\textit{This section discusses the problem formulation and the methods that are going to be used in order to provide the contextual solution of the problem. Finally, it exposes the project structure meant to help the reader understand the building steps of the solution and its implementation. } \\% The goal of this project has been split into two distinct goals: first enabling a 2D wheeled robot to navigate autonomously while avoiding obstacles and the second one aims to implement collaboration between similar robots.}\\
+
+Having exposed the context of this project, it is clear that the main goal of the project is to implement a SLAM algorithm on a low-cost hardware robotic solution that compensates for sensor noisiness and loss of accuracy through algorithms such as sensor fusion and mapping. Hence, the scope is to design and implement a SLAM algorithm using four main sensors: magnetomer, wheel encoders, LiDar and local positioning systems to allow the 2D mobile robot to navigate in an unknown environment while creating a map and self-localizing. \\
+Commonly, odometry sensors are used in addition to Lidar and visual sensors to find out where the robot is on the map. This project makes use of a LiDar and a localization system based on ultrasonic transmitter-receiver pairs (GOT). Using the SLAM algorithm can provide ways to correct the systematic errors that the GoT system may exhibit in non-line-of-sight situations. By equipping the robot with a GoT transmitter it is possible to obtain its global position on the map. Once the position is obtained the heading of the robot is estimated using the magnetometer and starts traveling towards a predefined point without regard to potential obstacles.
+
+\noindent A range-finder unit (LiDar) is used for the purpose of obstacle avoidance. A set of points is generated describing all visible obstacles around the robot. %The position reported by GoT is expected to suffer from inaccuracies therefore a Kalman filter is to be developed for optimal position tracking.\\
+There are many algorithms for obstacle avoidance that vary in terms of complexity, computational requirements and resources but the methods used are described in the next chapter.\\
+
+\noindent Finally the goal of the project is formulated below. \\
+
+\subsubsection{Problem Statement}
+
+\noindent \textbf{Design a low-cost mobile solution having as sensors an ultrasonic positioning system (GOT), a range-finding LiDar, odometry and magnetometer for orientation to implement autonomous navigation and mapping in an industrial environment through the use of SLAM.}\\
+
+\noindent In order to reach the goal of the project, a methodology is needed to guide the development of the solution. A methodology is meant to bring clarity in the methods and approaches used in the project for reaching the solution.
+
+\subsubsection{Methodology}
+
+Through the methodology used in this project a clear demarcation is sought to be made between low-level and high-level architecture.\\
+
+Low-level architecture denotes both hardware and software design of components that have to work continuously, with little error. This part is meant to be a plug-and-play type of architecture where no input or modification is required from the user. The hardware components of the low-level architecture includes:
+
+\begin{enumerate}
+    \item motors (i.e. wheel motors)
+    \item sensors (i.e. magnetometer, GoT)
+\end{enumerate}
+
+\begin{enumerate}
+    \item Make a theoretical investigation of the SLAM algorithms that can be used in this project through the literature review;
+    %\item Implement obstacle avoidance algorithms such as tangent bug and potential fields;
+    %\item Implement a Kalman filter for positional sensor fusion;
+    \item Parse all sensor data in an useful format;
+    \item Configure ROS framework for receiving sensor data;
+    \item Understand ROS SLAM;
+    \item Modify ROS SLAM to integrate the project's sensor specific data;
+    \item Verify if all requirement specifications are met.
+    %\item Design a way to extract object's features to create a map.
+    %\item Implement path planning and tracking.
+\end{enumerate}
+
+
+%\subsection{Part II - Multi-agent SLAM}
+%In the second part of the project more 2D robots are added. By increasing the number of units it is expected that the time it takes to map an environment can be decreased as well as allow collaboration between robots and multi-tasking.\\
+
+%\noindent All robot units are to have similar hardware but further development is needed to allow functionality. Namely every single robot must be aware of the positions and paths taken by other units which means that other path planning methods are to be used in favor of the ones from Part I. This introduces the second goal of the project:
+%\noindent \textbf{Path planning and following of multiple 2D robots capable of Autonomous SLAM navigation}\\
+%(\textcolor{red}{TODO: work in progress -- next semester}).
+
+\subsubsection{Project Structure}
+
+is meant...red line
+
+\textcolor{red}{ADD GRAPH TO PROJECT STRUCTURE - finalized when project structure done}
+
+This section exposed the problem statement of the project, the methodology to guide the solution and the project structure to visualize the building steps of the solution. It has also mentioned that the project should also fulfil the requirement specifications imposed by the authors in order to evaluate the efficiency and completeness of the solution. The requirement specifications are explained and showed in the next section.

@@ -152,6 +152,8 @@
 
 \newcommand{\specialcell}[2][c]{%
   \begin{tabular}[#1]{@{}#1@{}}#2\end{tabular}}
+  
+\newcommand\tab[1][5mm]{\hspace*{#1}}
 
 
 \titleformat{\chapter}{\normalfont\huge\bfseries}{\thechapter}{1em}{}
@@ -159,11 +161,11 @@
 {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
 \titlespacing*{\paragraph}
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-    \title{{\huge Position Control for a Swarm of Nano-Drones in a Network Distributed System}\\
-	{\large Control and Automation P1 Project}\\
-	\includegraphics[scale=0.5]{AalborgUniversity.png} \\ Network Controlled Systems}
-	\author{Amalia L. Cretu, Ion Sircu \\ 
-	\date{January, 2019}}
+    \title{{\huge Development of a Low-Cost Robotic Solution for Multi-Agent fullSLAM on 2D Mobile Platforms}\\
+	{\large Control and Automation}\\
+	\includegraphics[scale=0.5]{AalborgUniversity.png} \\ Master Thesis}
+	\author{Amalia Lelia Cretu-Sircu, Ion Sircu \\ 
+	\date{June, 2020}}
 \maketitle
 
 
@@ -177,15 +179,15 @@
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 \begin{multicols*}{2}
 	\includegraphics[scale=0.35]{AalborgUniversity.png}    \vspace{0.3cm}
-	\\\textbf{Title:}\\Position Control for a Swarm of Nano-Drones in a Network Distributed System
+	\\\textbf{Title:}\\Multi-Agent SLAM of 2D Mobile Robots
 	\vspace{0.5cm}
-	\\\textbf{Theme:}\\Network Controlled Systems \vspace{0.5cm}
-	\\\textbf{Project Period:}\\CA7 P1, January 2019 \\Date:  01.09.2018 - 31.01.2019 \vspace{0.5cm}
-	\\\textbf{Group number:}\\730 \vspace{0.5cm}
+	\\\textbf{Theme:}\\Master Thesis \vspace{0.5cm}
+	\\\textbf{Project Period:}\\CA9, January 2020 \\Date:  01.09.2019 - 06.06.2020 \vspace{0.5cm}
+	\\\textbf{Group number:}\\934 \vspace{0.5cm}
 	\\\textbf{Participants:}
-	\\Amalia L. Cretu \\Ion Sircu \\
-	\\\textbf{Supervisors:} \\Henrik Schiøler\\Chris U. Jeppesen  \vspace{0.5cm}
-	\\\textbf{Total Pages:} 107 \vspace{0.3cm}
+	\\Amalia Lelia Cretu-Sircu \\Ion Sircu \\
+	\\\textbf{Supervisors:} \\Henrik Schiøler  \vspace{0.5cm}
+	\\\textbf{Total Pages:} xxx \vspace{0.3cm}
 	\\\vspace{1.8cm}
 	\\\color{navyblue}{\textbf{The Technical Scientific Faculty \\School of Information and Communication Technologies (SICT) \\}\color{bloo}{Fredrik Bajers Vej 7B \\9220 Aalborg East \\}}
 	\vspace{0.7cm}
@@ -204,7 +206,7 @@
   \end{tabular}
 }
 
-\noindent \namesigdate{Amalia L. Cretu} \hfill \namesigdate{Ion Sircu}
+\noindent \namesigdate{Amalia Lelia Cretu-Sircu} \hfill \namesigdate{Ion Sircu}
 \pagenumbering{gobble}
 
 
@@ -226,9 +228,9 @@
   \fancyhf{}
   \renewcommand{\headrulewidth}{0.1pt}
   \renewcommand{\footrulewidth}{0.1pt}
-  \fancyhead[L]{CA7 - Group 730}
+  \fancyhead[L]{CA9 - Group 934}
   \fancyfoot[C]{\thepage}
-  \fancyhead[R]{P1}
+  \fancyhead[R]{Master Thesis}
   }
 \pagestyle{}
 
@@ -242,42 +244,42 @@
 \chapter{Introduction}
 \pagenumbering{arabic}
 \subfile{Introduction/Introduction}
-\newpage
 
-% ----- SYSTEM DESIGN ------
-\chapter{Components and System Design}
-\subfile{System_Design/ws1}
-\subfile{System_Design/ws2}
-\subfile{System_Design/ws3}
-\subfile{System_Design/ws4}
-\subfile{System_Design/ws5}
-\subfile{System_Design/ws6}
-\subfile{System_Design/Components}
-\subfile{System_Design/System_Design}
+\section{Problem Formulation and Methodology}
+\subfile{Introduction/Methodology}
 
-\newpage
+\section{Requirements Specifications}
+\subfile{Introduction/Requirements}
 
-% ----- Requirements Specifications ---------
-%\chapter{Requirements Specifications}
-%\subfile{Requirements/Requirements}
+\section{Hardware and Software Design}
+\subfile{Introduction/Hardware}
 
+\section{Literature Review of SLAM}
+\subfile{Introduction/LitReview}
 \newpage
 
 %---------Modelling--------------
-\chapter{Nano-Quadrotor System Modelling}
-\label{chapter:modelling}
-\subfile{Modelling/Modelling}
+%\chapter{Recursive Bayesian Estimation and SLAM Modelling}
+%\subfile{Modelling/Bayes}
+%\subfile{Modelling/SLAM}
 
-%---------Network--------------
-\chapter{Distributed System Network Analysis}
-\label{chapter:network}
-\subfile{Network/Network}
+%---------ROS Implementation--------------
 
-% ------- CONCLUSION --------
+\chapter{Low-Level Implementation Design}
+\subfile{ROS/lowlevel_implementation}
+
+\chapter{High-Level Implementation Design}
+\subfile{ROS/ROS_implementation}
+
+\chapter{Installation steps}
+\subfile{ROS/Install}
+
+%------- CONCLUSION --------
 \chapter{Conclusions}
-\subfile{Conclusion/Conclusion}
+\subfile{Conclusions/Conclusions}
+\subfile{Conclusions/Discussion}
 
-\bibliography{P1_bib.bib}
+\bibliography{bibliography.bib}
 \input{Appendix}
 %\listoftables
 %\listoffigures
